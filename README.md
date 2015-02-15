@@ -1,23 +1,30 @@
 TIMESTAMPS
 =============
 
-This is for the Strongloop Loopback framework.  It adds `createdAt` and `updatedAt` attributes to any Model.
+This module is designed for the [Strongloop Loopback](https://github.com/strongloop/loopback) framework.  It adds `createdAt` and `updatedAt` attributes to any Model.
 
-`createdAt` will be set to the current Date the first time an object is saved via the `before save` callback.
+`createdAt` will be set to the current Date the first time an object is saved.
 
-`updatedAt` will be set for every update of an object.
+`updatedAt` will be set for every update of an object through static bulk or instance methods.
+
+This module uses the `before save` [Operation Hook](http://docs.strongloop.com/display/public/LB/Operation+hooks#Operationhooks-beforesave) which is relatively new to the loopback framework; make sure you've updated your loopback module.
 
 INSTALL
 =============
 
   npm install --save loopback-ds-timestamp-mixin
 
-SERVER.JS???
+SERVER.JS
+=============
+
+In your `server/server.js` file add the following line before the `boot(app, __dirname);` line.
+
+  require('loopback-ds-timestamp-mixin')(app);
 
 CONFIG
 =============
 
-To use add the `mixin` attribute to the methods object of your model config.
+To use with your Models add the `mixin` attribute to the methods object of your model config.
 
   {
     "name": "Widget",
@@ -44,7 +51,9 @@ To use add the `mixin` attribute to the methods object of your model config.
 OPTIONS
 =============
 
-To use different values than `createdAt` and `updatedAt` for the default attribute names just add that to the mixin options.
+The attribute names `createdAt` and `updatedAt` are configurable.  To use different values for the default attribute names add the following parameters to the mixin options.
+
+In this example we change `createdAt` and `updatedAt` to `createdOn` and `updatedOn`, respectively.
 
   {
     "name": "Widget",
