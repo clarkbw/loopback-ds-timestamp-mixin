@@ -1,0 +1,24 @@
+{
+  "name": "loopback-ds-timestamp-mixin",
+  "version": "1.0.0",
+  "description": "A mixin to automatically generate created and updated Date attributes for loopback Models",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "jshint index.js",
+    "test": "mocha --reporter spec test.js"
+  },
+  "keywords": [
+    "loopback",
+    "strongloop"
+  ],
+  "author": "Bryan Clark",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "~2.1.1",
+    "loopback-datasource-juggler": "~2.17.0"
+  },
+  "devDependencies": {
+    "loopback": "~2.12.1",
+    "mocha": "~2.1.0"
+  }
+}
