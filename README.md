@@ -37,18 +37,14 @@ To use with your Models add the `mixin` attribute to the methods object of your 
     "properties": {
       "name": {
         "type": "string",
-        "comments": "A person's name"
-      },
-      "type": {
-        "type": "string",
       }
     },
     "validations": [],
     "relations": { },
     "acls": [ ],
     "methods": [ {
-      mixin : {
-        TimeStamp : true
+      "mixin" : {
+        "TimeStamp" : true
       }
     } ]
   }
@@ -68,20 +64,16 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
     "properties": {
       "name": {
         "type": "string",
-        "comments": "A person's name"
-      },
-      "type": {
-        "type": "string",
       }
     },
     "validations": [],
     "relations": { },
     "acls": [ ],
     "methods": [ {
-      mixin : {
-        TimeStamp : {
-          createdAt : 'createdOn',
-          updatedAt : 'updatedOn'
+      "mixin" : {
+        "TimeStamp" : {
+          "createdAt" : "createdOn",
+          "updatedAt" : "updatedOn"
         }
       }
     } ]
@@ -91,7 +83,14 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
 TESTING
 =============
 
+Run the tests in `test.js`
+
+```bash
   npm test
+```
 
+Run with debugging output on:
 
+```bash
   DEBUG='loopback-ds-timestamp-mixin' npm test
+```
