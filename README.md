@@ -7,25 +7,30 @@ This module is designed for the [Strongloop Loopback](https://github.com/strongl
 
 `updatedAt` will be set for every update of an object through static bulk or instance methods.
 
-This module uses the `before save` [Operation Hook](http://docs.strongloop.com/display/public/LB/Operation+hooks#Operationhooks-beforesave) which is relatively new to the loopback framework; make sure you've updated your loopback module.
+This module uses the `before save` [Operation Hook](http://docs.strongloop.com/display/public/LB/Operation+hooks#Operationhooks-beforesave) which is relatively new to the loopback framework so make sure you've updated your loopback module.
 
 INSTALL
 =============
 
+```bash
   npm install --save loopback-ds-timestamp-mixin
+```
 
 SERVER.JS
 =============
 
 In your `server/server.js` file add the following line before the `boot(app, __dirname);` line.
 
+```js
   require('loopback-ds-timestamp-mixin')(app);
+```
 
 CONFIG
 =============
 
 To use with your Models add the `mixin` attribute to the methods object of your model config.
 
+```json
   {
     "name": "Widget",
     "plural": "Widgets",
@@ -47,6 +52,7 @@ To use with your Models add the `mixin` attribute to the methods object of your 
       }
     } ]
   }
+```
 
 OPTIONS
 =============
@@ -55,6 +61,7 @@ The attribute names `createdAt` and `updatedAt` are configurable.  To use differ
 
 In this example we change `createdAt` and `updatedAt` to `createdOn` and `updatedOn`, respectively.
 
+```json
   {
     "name": "Widget",
     "plural": "Widgets",
@@ -79,6 +86,7 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
       }
     } ]
   }
+```
 
 TESTING
 =============
