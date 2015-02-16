@@ -1,3 +1,9 @@
+WARNING
+=============
+This is an experimental module and does not actually provide timestamps in the manner described below.  Mixins are not supported in this fasion as of yet.  Please the [loopback-boot mixins issue](strongloop/loopback-boot/issues/79) for more information.
+
+
+
 [![NPM](https://nodei.co/npm/loopback-ds-timestamp-mixin.png?compact=true)](https://nodei.co/npm/loopback-ds-timestamp-mixin/)
 
 [![dependencies](https://img.shields.io/david/clarkbw/loopback-ds-timestamp-mixin.svg)]()
