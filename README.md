@@ -33,7 +33,7 @@ In your `server/server.js` file add the following line before the `boot(app, __d
 CONFIG
 =============
 
-To use with your Models add the `mixin` attribute to the methods object of your model config.
+To use with your Models add the `mixins` attribute to the definition object of your model config.
 
 ```json
   {
@@ -47,11 +47,10 @@ To use with your Models add the `mixin` attribute to the methods object of your 
     "validations": [],
     "relations": { },
     "acls": [ ],
-    "methods": [ {
-      "mixin" : {
-        "TimeStamp" : true
-      }
-    } ]
+    "methods": [],
+    "mixins": {
+      "TimeStamp" : true
+    }
   }
 ```
 
@@ -74,14 +73,13 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
     "validations": [],
     "relations": { },
     "acls": [ ],
-    "methods": [ {
-      "mixin" : {
-        "TimeStamp" : {
-          "createdAt" : "createdOn",
-          "updatedAt" : "updatedOn"
-        }
+    "methods": [],
+    "mixins": {
+      "TimeStamp" : {
+        "createdAt" : "createdOn",
+        "updatedAt" : "updatedOn"
       }
-    } ]
+    }
   }
 ```
 
