@@ -1,3 +1,5 @@
+<img src="https://david-dm.org/clarkbw/loopback-ds-timestamp-mixin.svg"/>
+
 TIMESTAMPS
 =============
 
