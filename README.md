@@ -1,4 +1,5 @@
-<img src="https://david-dm.org/clarkbw/loopback-ds-timestamp-mixin.svg"/>
+[![dependencies](https://img.shields.io/david/clarkbw/loopback-ds-timestamp-mixin.svg)]()
+[![devDependencies](https://img.shields.io/david/dev/clarkbw/loopback-ds-timestamp-mixin.svg)]()
 
 TIMESTAMPS
 =============
