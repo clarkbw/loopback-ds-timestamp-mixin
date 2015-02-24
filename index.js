@@ -30,6 +30,5 @@ function timestamps(Model, options) {
 }
 
 module.exports = function mixin(app) {
-  console.log(app);
-  app.modelBuilder.mixins.define('TimeStamp', timestamps);
+  app.loopback.modelBuilder.mixins.define('TimeStamp', timestamps);
 };

@@ -3,6 +3,9 @@
 var assert = require('assert');
 
 var app = require('loopback');
+// https://github.com/strongloop/loopback-boot/blob/master/lib/executor.js#L57-L71
+// the loopback-boot module patches in the loopback attribute so we can assume the same
+app.loopback = require('loopback');
 
 var dataSource = app.createDataSource({
   connector: app.Memory
