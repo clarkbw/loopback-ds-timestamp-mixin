@@ -12,7 +12,7 @@ function timestamps(Model, options) {
   debug('createdAt', createdAt, options.createdAt);
   debug('updatedAt', updatedAt, options.updatedAt);
 
-  Model.defineProperty(createdAt, { type: Date, required : true, default: new Date() });
+  Model.defineProperty(createdAt, { type: Date, required : true, defaultFn: 'now' });
   Model.defineProperty(updatedAt, { type: Date, required : true });
 
   Model.observe('before save', function event (ctx, next) {
