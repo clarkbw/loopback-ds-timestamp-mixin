@@ -31,6 +31,7 @@ describe('loopback datasource timestamps', function () {
 
     it('should exist on create', function (done) {
       Book.create({name : 'book 1', type : 'fiction'}, function (err, book) {
+        assert.ifError(err);
         assert.ok(book.createdAt);
         assert.equal(typeof book.createdAt, 'object');
         assert.ok(book.createdAt instanceof Date);
@@ -41,6 +42,7 @@ describe('loopback datasource timestamps', function () {
     it('should not change on save', function (done) {
       var createdAt;
       Book.create({name : 'book 1', type : 'fiction'}, function (err, book) {
+        assert.ifError(err);
         assert.ok(book.createdAt);
         createdAt = book.createdAt;
         book.name = 'book inf';
@@ -54,9 +56,11 @@ describe('loopback datasource timestamps', function () {
     it('should not change on update', function (done) {
       var createdAt;
       Book.create({name : 'book 1', type : 'fiction'}, function (err, book) {
+        assert.ifError(err);
         assert.ok(book.createdAt);
         createdAt = book.createdAt;
         book.updateAttributes({ name : 'book inf' }, function (err) {
+          assert.ifError(err);
           assert.equal(createdAt, book.createdAt);
           done();
         });
@@ -66,9 +70,11 @@ describe('loopback datasource timestamps', function () {
     it('should not change with bulk updates', function (done) {
       var createdAt;
       Book.create({name : 'book 1', type : 'fiction'}, function (err, book) {
+        assert.ifError(err);
         assert.ok(book.createdAt);
         createdAt = book.createdAt;
         Book.updateAll({ type : 'fiction' }, { type : 'non-fiction' }, function (err, count) {
+          assert.ifError(err);
           assert.equal(createdAt, book.createdAt);
           done();
         });
@@ -89,6 +95,7 @@ describe('loopback datasource timestamps', function () {
 
     it('should exist on create', function (done) {
       Book.create({name : 'book 1', type : 'fiction'}, function (err, book) {
+        assert.ifError(err);
         assert.ok(book.updatedAt);
         assert.equal(typeof book.updatedAt, 'object');
         assert.ok(book.updatedAt instanceof Date);
@@ -158,6 +165,8 @@ describe('loopback datasource timestamps', function () {
         { mixins: {  TimeStamp: { createdAt : 'createdOn', updatedAt : 'updatedOn' } } }
         );
       Book.create({name : 'book 1', type : 'fiction'}, function (err, book) {
+        assert.ifError(err);
+
         assert.ok(book.createdAt === undefined);
         assert.ok(book.updatedAt === undefined);
 
