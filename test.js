@@ -5,7 +5,7 @@ var assert = require('assert');
 var app = require('loopback');
 
 var dataSource = app.createDataSource({
-    connector: app.Memory
+  connector: app.Memory
 });
 
 // import our TimeStamp mixin
