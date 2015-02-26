@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "debug": "2.x",
-    "loopback-datasource-juggler": "*"
+    "loopback-datasource-juggler": ">=2.18.1"
   },
   "devDependencies": {
     "loopback": "2.x",
