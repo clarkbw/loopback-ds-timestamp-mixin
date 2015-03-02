@@ -18,7 +18,9 @@
     "url": "https://github.com/clarkbw/loopback-ds-timestamp-mixin.git"
   },
   "dependencies": {
-    "debug": "2.x",
+    "debug": "2.x"
+  },
+  "peerDependencies": {
     "loopback-datasource-juggler": ">=2.18.1"
   },
   "devDependencies": {
