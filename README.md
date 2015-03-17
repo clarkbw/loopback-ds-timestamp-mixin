@@ -1,6 +1,6 @@
 WARNING
 =============
-Mixins are not fully supported in loopback as of yet.  See the [loopback-boot mixins issue](strongloop/loopback-boot/issues/79) for more information on this topic.  However if you would like to use this module it does work as expected, but isn't as clean as it could be.
+Mixins are not fully supported in loopback as of yet.  See the [loopback-boot mixins issue](https://github.com/strongloop/loopback-boot/issues/79) for more information on this topic.  However if you would like to use this module it does work as expected, but isn't as clean as it could be.
 
 
 [![NPM](https://nodei.co/npm/loopback-ds-timestamp-mixin.png?compact=true)](https://nodei.co/npm/loopback-ds-timestamp-mixin/)
