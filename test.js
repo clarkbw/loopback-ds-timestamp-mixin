@@ -121,26 +121,31 @@ describe('loopback datasource timestamps', function () {
     });
 
     it('should update bulk model updates at once', function (done) {
-      var updatedAt1, updatedAt2;
-      Book.create({name : 'book 1', type : 'fiction'}, function (err, book) {
+      var createdAt1, createdAt2, updatedAt1, updatedAt2;
+      Book.create({name : 'book 1', type : 'fiction'}, function (err, book1) {
         assert.ifError(err);
-        updatedAt1 = book.updatedAt;
+        createdAt1 = book1.createdAt;
+        updatedAt1 = book1.updatedAt;
         setTimeout(function pause1() {
-          Book.create({name : 'book 2', type : 'fiction'}, function (err, book) {
+          Book.create({name : 'book 2', type : 'fiction'}, function (err, book2) {
             assert.ifError(err);
-            updatedAt2 = book.updatedAt;
+            createdAt2 = book2.createdAt;
+            updatedAt2 = book2.updatedAt;
             assert.ok(updatedAt2.getTime() > updatedAt1.getTime());
             setTimeout(function pause2() {
               Book.updateAll({ type : 'fiction' }, { type : 'romance' }, function (err, count) {
                 assert.ifError(err);
+                assert.equal(createdAt1.getTime(), book1.createdAt.getTime());
+                assert.equal(createdAt2.getTime(), book2.createdAt.getTime());
                 Book.find({ type : 'romance' }, function (err, books) {
                   assert.ifError(err);
                   assert.equal(books.length, 2);
                   books.forEach(function (book) {
+                    // because both books were updated in the updateAll call
+                    // our updatedAt1 and updatedAt2 dates have to be less than the current
                     assert.ok(updatedAt1.getTime() < book.updatedAt.getTime());
                     assert.ok(updatedAt2.getTime() < book.updatedAt.getTime());
                   });
-                  // assert.ok(updatedAt1.getTime() > updatedAt2.getTime());
                   done();
                 });
               });
