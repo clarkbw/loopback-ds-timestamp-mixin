@@ -33,7 +33,20 @@ SERVER.JS
 In your `server/server.js` file add the following line before the `boot(app, __dirname);` line.
 
 ```js
-  require('loopback-ds-timestamp-mixin')(app);
+...
+var app = module.exports = loopback();
+...
+// Add Timestamp Mixin to loopback
+require('loopback-ds-timestamp-mixin')(app);
+
+boot(app, __dirname, function(err) {
+  'use strict';
+  if (err) throw err;
+
+  // start the server if `$ node server.js`
+  if (require.main === module)
+    app.start();
+});
 ```
 
 CONFIG
