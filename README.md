@@ -57,16 +57,11 @@ To use with your Models add the `mixins` attribute to the definition object of y
 ```json
   {
     "name": "Widget",
-    "plural": "Widgets",
     "properties": {
       "name": {
         "type": "string",
       }
     },
-    "validations": [],
-    "relations": { },
-    "acls": [ ],
-    "methods": [],
     "mixins": {
       "TimeStamp" : true
     }
@@ -83,16 +78,11 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
 ```json
   {
     "name": "Widget",
-    "plural": "Widgets",
     "properties": {
       "name": {
         "type": "string",
       }
     },
-    "validations": [],
-    "relations": { },
-    "acls": [ ],
-    "methods": [],
     "mixins": {
       "TimeStamp" : {
         "createdAt" : "createdOn",
