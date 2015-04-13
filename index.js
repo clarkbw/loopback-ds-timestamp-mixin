@@ -19,12 +19,11 @@ function timestamps(Model, options) {
     if (ctx.instance) {
       debug('%s.%s before save: %s', ctx.Model.modelName, updatedAt, ctx.instance.id);
       ctx.instance[updatedAt] = new Date();
-      next();
     } else {
       debug('%s.%s before update matching %j', ctx.Model.pluralModelName, updatedAt, ctx.where);
       ctx.data[updatedAt] = new Date();
-      next();
     }
+    next();
   });
 
 }
