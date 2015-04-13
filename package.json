@@ -4,7 +4,7 @@
   "description": "A mixin to automatically generate created and updated Date attributes for loopback Models",
   "main": "index.js",
   "scripts": {
-    "pretest": "jshint index.js",
+    "pretest": "jscs index.js && jshint index.js",
     "test": "mocha --reporter spec test.js"
   },
   "keywords": [

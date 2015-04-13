@@ -1,0 +1,24 @@
+{
+  "preset": "google",
+  "excludeFiles": ["node_modules"],
+  "requireCurlyBraces": [
+     "else",
+     "for",
+     "while",
+     "do",
+     "try",
+     "catch"
+  ],
+  "disallowMultipleVarDecl": "exceptUndefined",
+  "disallowSpacesInsideObjectBrackets": null,
+  "maximumLineLength": {
+     "value": 120,
+     "allowComments": true,
+     "allowRegex": true
+  },
+  "validateJSDoc": {
+    "checkParamNames": false,
+    "checkRedundantParams": false,
+    "requireParamTypes": true
+  }
+}
