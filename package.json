@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "pretest": "jscs index.js && jshint index.js",
-    "test": "mocha --reporter spec test.js"
+    "test": "mocha --reporter spec test.js",
+    "outdated": "npm outdated --depth=0"
   },
   "keywords": [
     "loopback",
@@ -21,7 +22,7 @@
     "debug": "2.x"
   },
   "peerDependencies": {
-    "loopback-datasource-juggler": ">=2.18.1"
+    "loopback-datasource-juggler": ">=2.23.0"
   },
   "devDependencies": {
     "loopback": "2.x",
