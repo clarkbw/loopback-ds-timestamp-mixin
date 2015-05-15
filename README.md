@@ -1,6 +1,6 @@
 WARNING
 =============
-Mixins are not fully supported in loopback as of yet.  See the [loopback-boot mixins issue](https://github.com/strongloop/loopback-boot/issues/79) for more information on this topic.  However if you would like to use this module it does work as expected, but isn't as clean as it could be.
+Mixins are actively being implemented in loopback.  See the [loopback-boot mixins issue](https://github.com/strongloop/loopback-boot/issues/79) for more information on loopback mixins.  This module works as expected but may change as loopback changes.
 
 
 [![NPM](https://nodei.co/npm/loopback-ds-timestamp-mixin.png?compact=true)](https://nodei.co/npm/loopback-ds-timestamp-mixin/)
@@ -18,7 +18,7 @@ This module is designed for the [Strongloop Loopback](https://github.com/strongl
 
 `updatedAt` will be set for every update of an object through bulk `updateAll` or instance `model.save` methods.
 
-This module is implemented with the `before save` [Operation Hook](http://docs.strongloop.com/display/public/LB/Operation+hooks#Operationhooks-beforesave) which is relatively new to the loopback framework so make sure you've updated your loopback-datasource-juggler module.
+This module is implemented with the `before save` [Operation Hook](http://docs.strongloop.com/display/public/LB/Operation+hooks#Operationhooks-beforesave) which is relatively new to the loopback framework so your loopback-datasource-juggler module must greater than version [2.23.0](0002aaedeffadda34ae03752d03d0805ab661665).
 
 INSTALL
 =============
@@ -68,7 +68,7 @@ To use with your Models add the `mixins` attribute to the definition object of y
   }
 ```
 
-OPTIONS
+BOOT OPTIONS
 =============
 
 The attribute names `createdAt` and `updatedAt` are configurable.  To use different values for the default attribute names add the following parameters to the mixin options.
@@ -90,6 +90,19 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
       }
     }
   }
+```
+
+OPERATION OPTIONS
+=============
+
+By passing in additional options to an update or save operation you can control when this mixin updates the `updatedAt` field.  The passing true to the option `skipUpdatedAt` will skip updating the `updatedAt` field.
+
+In this example we assume a book object with the id of 2 already exists. Normally running this operation would change the `updatedAt` field to a new value.
+
+```js
+Book.updateOrCreate({name: 'New name', id: 2}, {skipUpdatedAt: true}, function(err, book) {
+  // book.updatedAt will not have changed
+});
 ```
 
 TESTING

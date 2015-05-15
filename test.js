@@ -161,7 +161,7 @@ describe('loopback datasource timestamps', function() {
 
   });
 
-  describe('options', function() {
+  describe('boot options', function() {
 
     beforeEach(function(done) {
       Book.destroyAll(done);
@@ -186,6 +186,43 @@ describe('loopback datasource timestamps', function() {
         assert.equal(typeof book.updatedOn, 'object');
         assert.ok(book.updatedOn instanceof Date);
         done();
+      });
+    });
+
+  });
+
+  describe('operation hook options', function() {
+
+    beforeEach(function() {
+      Book = dataSource.createModel('Book',
+        { name: String, type: String },
+        { mixins: {  TimeStamp: true } }
+        );
+    });
+
+    afterEach(function(done) {
+      Book.destroyAll(done);
+    });
+
+    it('should skip changing updatedAt when option passed', function(done) {
+      var updated, book;
+      Book.create({name:'book 1', type:'fiction'}, function(err, book1) {
+        assert.ifError(err);
+
+        assert.ok(book1.updatedAt);
+
+        updated = book1.updatedAt;
+        book = book1.toObject();
+        book.name = 'book 2';
+
+        Book.updateOrCreate(book, {skipUpdatedAt: true}, function(err, book2) {
+          assert.ifError(err);
+
+          assert.ok(book2.updatedAt);
+          assert.equal(updated.getTime(), book2.updatedAt.getTime());
+          done();
+        });
+
       });
     });
 

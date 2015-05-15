@@ -16,6 +16,8 @@ function timestamps(Model, options) {
   Model.defineProperty(updatedAt, { type: Date, required: true });
 
   Model.observe('before save', function event(ctx, next) {
+    debug('ctx.options', ctx.options);
+    if (ctx.options && ctx.options.skipUpdatedAt) { return next(); }
     if (ctx.instance) {
       debug('%s.%s before save: %s', ctx.Model.modelName, updatedAt, ctx.instance.id);
       ctx.instance[updatedAt] = new Date();
