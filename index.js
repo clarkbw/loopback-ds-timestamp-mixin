@@ -8,12 +8,13 @@ function timestamps(Model, options) {
 
   var createdAt = options.createdAt || 'createdAt';
   var updatedAt = options.updatedAt || 'updatedAt';
+  var required = options.required == undefined ? true : options.required
 
   debug('createdAt', createdAt, options.createdAt);
   debug('updatedAt', updatedAt, options.updatedAt);
 
-  Model.defineProperty(createdAt, { type: Date, required: true, defaultFn: 'now' });
-  Model.defineProperty(updatedAt, { type: Date, required: true });
+  Model.defineProperty(createdAt, { type: Date, required: required, defaultFn: 'now' });
+  Model.defineProperty(updatedAt, { type: Date, required: required });
 
   Model.observe('before save', function event(ctx, next) {
     debug('ctx.options', ctx.options);

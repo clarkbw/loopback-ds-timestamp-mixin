@@ -189,6 +189,26 @@ describe('loopback datasource timestamps', function() {
       });
     });
 
+    it('should default required on createdAt and updatedAt ', function(done) {
+      Book = dataSource.createModel('Book',
+        { name: String, type: String },
+        { mixins: {  TimeStamp: true } }
+        );
+      assert.equal(Book.definition.properties.createdAt.required, true);
+      assert.equal(Book.definition.properties.updatedAt.required, true);
+      done();
+    });
+
+    it('should have optional createdAt and updatedAt', function(done) {
+      Book = dataSource.createModel('Book',
+        { name: String, type: String },
+        { mixins: {  TimeStamp: { required: false } } }
+        );
+      assert.equal(Book.definition.properties.createdAt.required, false);
+      assert.equal(Book.definition.properties.updatedAt.required, false);
+      done();
+    });
+    
   });
 
   describe('operation hook options', function() {

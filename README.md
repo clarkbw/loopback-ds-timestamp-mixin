@@ -73,7 +73,9 @@ BOOT OPTIONS
 
 The attribute names `createdAt` and `updatedAt` are configurable.  To use different values for the default attribute names add the following parameters to the mixin options.
 
-In this example we change `createdAt` and `updatedAt` to `createdOn` and `updatedOn`, respectively.
+You can also configure whether `createdAt` and `updatedAt` are required or not. This can be useful when applying this mixin to existing data where the `required` constraint would fail by default.
+
+In this example we change `createdAt` and `updatedAt` to `createdOn` and `updatedOn`, respectively. We also change the default `required` to `false`.
 
 ```json
   {
@@ -86,7 +88,8 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
     "mixins": {
       "TimeStamp" : {
         "createdAt" : "createdOn",
-        "updatedAt" : "updatedOn"
+        "updatedAt" : "updatedOn",
+        "required" : false
       }
     }
   }
