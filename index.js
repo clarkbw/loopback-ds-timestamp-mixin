@@ -8,7 +8,7 @@ function timestamps(Model, options) {
 
   var createdAt = options.createdAt || 'createdAt';
   var updatedAt = options.updatedAt || 'updatedAt';
-  var required = options.required == undefined ? true : options.required
+  var required = options.required === undefined ? true : options.required;
 
   debug('createdAt', createdAt, options.createdAt);
   debug('updatedAt', updatedAt, options.updatedAt);

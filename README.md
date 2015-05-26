@@ -111,6 +111,8 @@ Book.updateOrCreate({name: 'New name', id: 2}, {skipUpdatedAt: true}, function(e
 TESTING
 =============
 
+You'll need `jscs` and `jshint` globally installed to run the tests which can be installed with this command: `npm install -g jshint jscs`.  These tools help maintain style and error checking.
+
 Run the tests in `test.js`
 
 ```bash
