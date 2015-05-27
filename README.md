@@ -125,3 +125,7 @@ Run with debugging output on:
 ```bash
   DEBUG='loopback-ds-timestamp-mixin' npm test
 ```
+
+LICENSE
+=============
+[ISC](LICENSE)
