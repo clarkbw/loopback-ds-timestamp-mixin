@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "pretest": "jscs index.js && jshint index.js",
-    "test": "mocha --reporter spec test.js",
+    "test": "nyc tap ./test.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "outdated": "npm outdated --depth=0"
   },
   "keywords": [
@@ -25,7 +26,9 @@
     "loopback-datasource-juggler": ">=2.23.0"
   },
   "devDependencies": {
+    "coveralls": "^2.11.2",
     "loopback": "2.x",
-    "mocha": "2.x"
+    "nyc": "^2.2.1",
+    "tap": "^1.2.0"
   }
 }
