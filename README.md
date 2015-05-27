@@ -8,6 +8,7 @@ Mixins are actively being implemented in loopback.  See the [loopback-boot mixin
 [![dependencies](https://img.shields.io/david/clarkbw/loopback-ds-timestamp-mixin.svg)]()
 [![devDependencies](https://img.shields.io/david/dev/clarkbw/loopback-ds-timestamp-mixin.svg)]()
 [![Build Status](https://travis-ci.org/clarkbw/loopback-ds-timestamp-mixin.svg?branch=master)](https://travis-ci.org/clarkbw/loopback-ds-timestamp-mixin)
+[![Coverage Status](https://coveralls.io/repos/clarkbw/loopback-ds-timestamp-mixin/badge.svg)](https://coveralls.io/r/clarkbw/loopback-ds-timestamp-mixin)
 
 TIMESTAMPS
 =============
