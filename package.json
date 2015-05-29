@@ -4,7 +4,7 @@
   "description": "A mixin to automatically generate created and updated Date attributes for loopback Models",
   "main": "index.js",
   "scripts": {
-    "pretest": "jscs index.js && jshint index.js",
+    "pretest": "jscs *.js && jshint *.js",
     "test": "nyc tap ./test.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "outdated": "npm outdated --depth=0"
