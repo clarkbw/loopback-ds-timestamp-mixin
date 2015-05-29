@@ -14,7 +14,7 @@
     "strongloop"
   ],
   "author": "Bryan Clark",
-  "license": "MIT",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/clarkbw/loopback-ds-timestamp-mixin.git"
