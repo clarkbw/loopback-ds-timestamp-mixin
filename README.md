@@ -1,8 +1,3 @@
-WARNING
-=============
-Mixins are actively being implemented in loopback.  See the [loopback-boot mixins issue](https://github.com/strongloop/loopback-boot/issues/79) for more information on loopback mixins.  This module works as expected but may change as loopback changes.
-
-
 [![NPM](https://nodei.co/npm/loopback-ds-timestamp-mixin.png?compact=true)](https://nodei.co/npm/loopback-ds-timestamp-mixin/)
 
 [![dependencies](https://img.shields.io/david/clarkbw/loopback-ds-timestamp-mixin.svg)]()
@@ -28,8 +23,34 @@ INSTALL
   npm install --save loopback-ds-timestamp-mixin
 ```
 
+MIXINSOURCES
+=============
+With [loopback-boot@v2.8.0](https://github.com/strongloop/loopback-boot/)  [mixinSources](https://github.com/strongloop/loopback-boot/pull/131) have been implemented in a way which allows for loading this mixin without changes to the `server.js` file previously required.
+
+Add the `mixins` property to your `server/model-config.json` like the following:
+
+```json
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "../node_modules/loopback-ds-timestamp-mixin",
+      "../common/mixins"
+    ]
+  }
+}
+```
+
 SERVER.JS
 =============
+
+DEPRECATED: See MIXINSOURCES above for configuration. Use this method ONLY if you cannot upgrade to loopback-boot@v2.8.0.
 
 In your `server/server.js` file add the following line before the `boot(app, __dirname);` line.
 
