@@ -5,3 +5,11 @@ node_js:
 - '0.10'
 - iojs
 after_success: npm run coverage
+deploy:
+  provider: npm
+  email: clarkbw@gmail.com
+  api_key:
+    secure: uv53tKTWDrK0EPRcYhZcLqOiuhBONXI9sU0GhLS6Q7JaUfGyk0EnVJxsAqOV1OmCd1vgkIbp0fc78gYmtgo1C0Anbx1qNW9RgLdZEnrC6v3+sLbHxapGF2k0xBFQc5qnDJ+wuHl9bQD8ymoy0TNYNwvvit9zc1odMtpd8nqOtSc=
+  on:
+    tags: true
+    repo: clarkbw/loopback-ds-timestamp-mixin
