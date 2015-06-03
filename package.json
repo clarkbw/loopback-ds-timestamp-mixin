@@ -27,6 +27,8 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.2",
+    "jscs": "^1.13.1",
+    "jshint": "^2.8.0",
     "loopback": "2.x",
     "nyc": "^2.2.1",
     "tap": "^1.2.0"
