@@ -64,7 +64,7 @@ test('loopback datasource timestamps', function(tap) {
         });
       });
     });
-    
+
     t.test('should not change on upsert', function(tt) {
       var createdAt;
       Book.destroyAll(function() {
