@@ -65,6 +65,21 @@ test('loopback datasource timestamps', function(tap) {
       });
     });
 
+    t.test('should not change on upsert', function(tt) {
+      var createdAt;
+      Book.destroyAll(function() {
+        Book.create({name:'book 1', type:'fiction'}, function(err, book) {
+          tt.error(err);
+          tt.ok(book.createdAt);
+          Book.upsert({id: book.id, name:'book inf'}, function(err, b) {
+            tt.error(err);
+            tt.equal(book.createdAt, b.createdAt);
+            tt.end();
+          });
+        });
+      });
+    });
+
     t.test('should not change with bulk updates', function(tt) {
       var createdAt;
       Book.destroyAll(function() {
