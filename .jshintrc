@@ -1,0 +1,6 @@
+{
+  "node": true,
+  "esnext": true,
+  "quotmark": "single",
+  "maxlen": 120
+}
