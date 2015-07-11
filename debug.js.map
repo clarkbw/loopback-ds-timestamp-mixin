@@ -1,0 +1,1 @@
+{"version":3,"sources":["debug.js"],"names":[],"mappings":";;;;;;;;qBAAkB,OAAO;;;;qBAEV;MAAC,SAAS,yDAAC,6BAA6B;SAAK,wBAAM,SAAS,CAAC;CAAA","file":"debug.js","sourcesContent":["import debug from 'debug';\n\nexport default (namespace='loopback-ds-timestamp-mixin') => debug(namespace);\n"],"sourceRoot":"/Users/clarkbw/src/pi/loopback-ds-timestamp-mixin/es6"}

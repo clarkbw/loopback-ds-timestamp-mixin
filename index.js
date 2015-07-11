@@ -1,5 +1,19 @@
-var deprecate = require('util').deprecate;
+'use strict';
 
-module.exports = deprecate(function mixin(app) {
-  app.loopback.modelBuilder.mixins.define('TimeStamp', require('./time-stamp'));
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _util = require('util');
+
+var _timeStamp = require('./time-stamp');
+
+var _timeStamp2 = _interopRequireDefault(_timeStamp);
+
+exports['default'] = (0, _util.deprecate)(function (app) {
+  app.loopback.modelBuilder.mixins.define('TimeStamp', _timeStamp2['default']);
 }, 'DEPRECATED: Use mixinSources, see https://github.com/clarkbw/loopback-ds-timestamp-mixin#mixinsources');
+module.exports = exports['default'];
+//# sourceMappingURL=index.js.map

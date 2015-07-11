@@ -1,6 +1,7 @@
 {
   "preset": "google",
   "excludeFiles": ["node_modules"],
+  "esnext": true,
   "requireCurlyBraces": [
      "else",
      "for",

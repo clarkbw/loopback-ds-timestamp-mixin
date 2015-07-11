@@ -1,31 +1,40 @@
-var debug = require('debug')('loopback-ds-timestamp-mixin');
+'use strict';
 
-module.exports = function timestamp(Model, options) {
-  'use strict';
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var debug = require('./debug')();
+
+exports['default'] = function (Model) {
+  var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
   debug('TimeStamp mixin for Model %s', Model.modelName);
 
-  var createdAt = options.createdAt || 'createdAt';
-  var updatedAt = options.updatedAt || 'updatedAt';
-  var required = options.required === undefined ? true : options.required;
+  options = _extends({ createdAt: 'createdAt', updatedAt: 'updatedAt', required: true }, options);
 
-  debug('createdAt', createdAt, options.createdAt);
-  debug('updatedAt', updatedAt, options.updatedAt);
+  debug('options', options);
 
-  Model.defineProperty(createdAt, { type: Date, required: required, defaultFn: 'now' });
-  Model.defineProperty(updatedAt, { type: Date, required: required });
+  Model.defineProperty(options.createdAt, { type: Date, required: options.required, defaultFn: 'now' });
+  Model.defineProperty(options.updatedAt, { type: Date, required: options.required });
 
-  Model.observe('before save', function event(ctx, next) {
+  Model.observe('before save', function (ctx, next) {
     debug('ctx.options', ctx.options);
-    if (ctx.options && ctx.options.skipUpdatedAt) { return next(); }
+    if (ctx.options && ctx.options.skipUpdatedAt) {
+      return next();
+    }
     if (ctx.instance) {
-      debug('%s.%s before save: %s', ctx.Model.modelName, updatedAt, ctx.instance.id);
-      ctx.instance[updatedAt] = new Date();
+      debug('%s.%s before save: %s', ctx.Model.modelName, options.updatedAt, ctx.instance.id);
+      ctx.instance[options.updatedAt] = new Date();
     } else {
-      debug('%s.%s before update matching %j', ctx.Model.pluralModelName, updatedAt, ctx.where);
-      ctx.data[updatedAt] = new Date();
+      debug('%s.%s before update matching %j', ctx.Model.pluralModelName, options.updatedAt, ctx.where);
+      ctx.data[options.updatedAt] = new Date();
     }
     next();
   });
-
 };
+
+module.exports = exports['default'];
+//# sourceMappingURL=time-stamp.js.map
