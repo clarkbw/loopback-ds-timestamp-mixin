@@ -1,10 +1,10 @@
-import debug from './debug';
+const debug = require('./debug')();
 
-export default (Model, options) => {
+export default (Model, options = {}) => {
 
   debug('TimeStamp mixin for Model %s', Model.modelName);
 
-  Object.assign(options, { createdAt: 'createdAt', updatedAt: 'updatedAt', required: true});
+  options = Object.assign({ createdAt: 'createdAt', updatedAt: 'updatedAt', required: true}, options);
 
   debug('options', options);
 

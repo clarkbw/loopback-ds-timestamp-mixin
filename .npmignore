@@ -1,2 +1,4 @@
 .jscsrc
 .travis.yml
+.jshintignore
+.jshintrc

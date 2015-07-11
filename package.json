@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "jscs ./es6/*.js && jshint ./es6/*.js",
-    "test": "nyc tap ./test.js",
+    "test": "nyc tap ./test/*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "outdated": "npm outdated --depth=0"
   },
@@ -26,16 +26,17 @@
     "loopback-datasource-juggler": ">=2.23.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-babel": "^5.1.0",
-    "gulp-sourcemaps": "^1.5.2",
     "babel-core": "^5.5.6",
     "babel-plugin-object-assign": "^1.1.0",
     "coveralls": "^2.11.2",
-    "jscs": "^1.13.1",
-    "jshint": "^2.8.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "jscs": "latest",
+    "jshint": "latest",
     "loopback": "2.x",
-    "nyc": "^2.2.1",
-    "tap": "^1.2.0"
+    "loopback-boot": "2.x",
+    "nyc": "latest",
+    "tap": "latest"
   }
 }
