@@ -1,3 +1,3 @@
 import debug from 'debug';
 
-export default (namespace='loopback-ds-timestamp-mixin') => debug(namespace);
+export default (name='time-stamp') => debug(`loopback:mixins:${name}`);

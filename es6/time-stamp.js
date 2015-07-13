@@ -1,15 +1,16 @@
-const debug = require('./debug')();
+import _debug from './debug';
+const debug = _debug();
 
 export default (Model, options = {}) => {
 
   debug('TimeStamp mixin for Model %s', Model.modelName);
 
-  options = Object.assign({ createdAt: 'createdAt', updatedAt: 'updatedAt', required: true}, options);
+  options = Object.assign({createdAt: 'createdAt', updatedAt: 'updatedAt', required: true}, options);
 
   debug('options', options);
 
-  Model.defineProperty(options.createdAt, { type: Date, required: options.required, defaultFn: 'now' });
-  Model.defineProperty(options.updatedAt, { type: Date, required: options.required });
+  Model.defineProperty(options.createdAt, {type: Date, required: options.required, defaultFn: 'now'});
+  Model.defineProperty(options.updatedAt, {type: Date, required: options.required});
 
   Model.observe('before save', (ctx, next) => {
     debug('ctx.options', ctx.options);

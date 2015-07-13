@@ -131,7 +131,7 @@ Run the tests in the `test` directory.
 Run with debugging output on:
 
 ```bash
-  DEBUG='loopback-ds-timestamp-mixin' npm test
+  DEBUG='loopback:mixins:time-stamp' npm test
 ```
 
 LICENSE

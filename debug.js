@@ -11,8 +11,8 @@ var _debug = require('debug');
 var _debug2 = _interopRequireDefault(_debug);
 
 exports['default'] = function () {
-  var namespace = arguments.length <= 0 || arguments[0] === undefined ? 'loopback-ds-timestamp-mixin' : arguments[0];
-  return (0, _debug2['default'])(namespace);
+  var name = arguments.length <= 0 || arguments[0] === undefined ? 'time-stamp' : arguments[0];
+  return (0, _debug2['default'])('loopback:mixins:' + name);
 };
 
 module.exports = exports['default'];
