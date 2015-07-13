@@ -47,30 +47,6 @@ Add the `mixins` property to your `server/model-config.json` like the following:
 }
 ```
 
-SERVER.JS
-=============
-
-DEPRECATED: See MIXINSOURCES above for configuration. Use this method ONLY if you cannot upgrade to loopback-boot@v2.8.0.
-
-In your `server/server.js` file add the following line before the `boot(app, __dirname);` line.
-
-```js
-...
-var app = module.exports = loopback();
-...
-// Add Timestamp Mixin to loopback
-require('loopback-ds-timestamp-mixin')(app);
-
-boot(app, __dirname, function(err) {
-  'use strict';
-  if (err) throw err;
-
-  // start the server if `$ node server.js`
-  if (require.main === module)
-    app.start();
-});
-```
-
 CONFIG
 =============
 
@@ -130,12 +106,23 @@ Book.updateOrCreate({name: 'New name', id: 2}, {skipUpdatedAt: true}, function(e
 });
 ```
 
+DEVELOPMENT
+=============
+
+This package is written in ES6 JavaScript, check out [@getify/You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS) if you want to learn more about ES6.
+
+Source files are located in the `es6` directory.  Edit the source files to make changes while running `gulp` in the background.  Gulp is using [babel](https://babeljs.io/docs/setup/#gulp) to transform the es6 JavaScript into node compatible JavaScript.
+
+```bash
+  gulp
+```
+
 TESTING
 =============
 
-You'll need `jscs` and `jshint` globally installed to run the tests which can be installed with this command: `npm install -g jshint jscs`.  These tools help maintain style and error checking.
+This package uses `jscs` and `jshint` as pretests to help maintain style and for error checking.  All test are run against the transformed versions of files, not the es6 versions.
 
-Run the tests in `test.js`
+Run the tests in the `test` directory.
 
 ```bash
   npm test
