@@ -4,8 +4,8 @@
   "description": "A mixin to automatically generate created and updated Date attributes for loopback Models",
   "main": "index.js",
   "scripts": {
-    "prepublish": "gulp babel && npm test",
-    "pretest": "jscs ./es6/*.js && jshint ./es6/*.js",
+    "preversion": "npm test",
+    "pretest": "jscs ./es6/*.js && jshint ./es6/*.js && gulp babel",
     "test": "nyc tap ./test/*.js",
     "watch": "gulp",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
@@ -13,7 +13,9 @@
   },
   "keywords": [
     "loopback",
-    "strongloop"
+    "strongloop",
+    "mixin",
+    "timestamp"
   ],
   "author": "Bryan Clark",
   "license": "ISC",
