@@ -9,6 +9,12 @@ export default (Model, options = {}) => {
 
   debug('options', options);
 
+  debug('Model.settings.validateUpsert', Model.settings.validateUpsert);
+  if (Model.settings.validateUpsert && options.required) {
+    console.warn('TimeStamp mixin requires validateUpsert be false. See @clarkbw/loopback-ds-timestamp-mixin#10');
+  }
+  Model.settings.validateUpsert = false;
+
   Model.defineProperty(options.createdAt, {type: Date, required: options.required, defaultFn: 'now'});
   Model.defineProperty(options.updatedAt, {type: Date, required: options.required});
 

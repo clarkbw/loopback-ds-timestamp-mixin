@@ -23,12 +23,10 @@ test('loopback datasource timestamps', function(tap) {
     });
 
     t.test('should not change on save', function(tt) {
-      var createdAt;
       Widget.destroyAll(function() {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book) {
           tt.error(err);
           tt.ok(book.createdAt);
-          createdAt = book.createdAt;
           book.name = 'book inf';
           book.save(function(err, b) {
             tt.equal(book.createdAt, b.createdAt);
@@ -39,7 +37,6 @@ test('loopback datasource timestamps', function(tap) {
     });
 
     t.test('should not change on update', function(tt) {
-      var createdAt;
       Widget.destroyAll(function() {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book) {
           tt.error(err);
@@ -47,6 +44,20 @@ test('loopback datasource timestamps', function(tap) {
           book.updateAttributes({ name:'book inf' }, function(err, b) {
             tt.error(err);
             tt.equal(book.createdAt, b.createdAt);
+            tt.end();
+          });
+        });
+      });
+    });
+
+    t.test('should not change on upsert', function(tt) {
+      Widget.destroyAll(function() {
+        Widget.create({name:'book 1', type:'fiction'}, function(err, book) {
+          tt.error(err);
+          tt.ok(book.createdAt);
+          Widget.upsert({id: book.id, name:'book inf'}, function(err, b) {
+            tt.error(err);
+            tt.equal(book.createdAt.getTime(), b.createdAt.getTime());
             tt.end();
           });
         });
@@ -205,22 +216,19 @@ test('loopback datasource timestamps', function(tap) {
   tap.test('operation hook options', function(t) {
 
     t.test('should skip changing updatedAt when option passed', function(tt) {
-      var updated, book;
       Widget.destroyAll(function() {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book1) {
           tt.error(err);
 
           tt.ok(book1.updatedAt);
 
-          updated = book1.updatedAt;
-          book = book1.toObject();
-          book.name = 'book 2';
+          var book = {id: book1.id, name:'book 2'};
 
           Widget.updateOrCreate(book, {skipUpdatedAt: true}, function(err, book2) {
             tt.error(err);
 
             tt.ok(book2.updatedAt);
-            tt.equal(updated.getTime(), book2.updatedAt.getTime());
+            tt.equal(book1.updatedAt.getTime(), book2.updatedAt.getTime());
             tt.end();
           });
 

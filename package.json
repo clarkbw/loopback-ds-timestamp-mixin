@@ -27,7 +27,7 @@
     "debug": "2.x"
   },
   "peerDependencies": {
-    "loopback-datasource-juggler": ">=2.23.0"
+    "loopback-datasource-juggler": ">=2.33.2"
   },
   "devDependencies": {
     "babel-core": "latest",
