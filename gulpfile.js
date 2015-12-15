@@ -15,7 +15,7 @@ gulp.task('babel', function() {
   return gulp.src(paths.es6)
   .pipe(sourcemaps.init())
   .pipe(babel({
-    plugins: ['object-assign']
+    plugins: ['transform-object-assign']
   }))
   .pipe(sourcemaps.write('.', { sourceRoot: paths.sourceRoot }))
   .pipe(gulp.dest(paths.es5));
