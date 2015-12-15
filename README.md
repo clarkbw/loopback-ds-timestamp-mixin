@@ -20,8 +20,13 @@ INSTALL
 =============
 
 ```bash
-  npm install --save loopback-ds-timestamp-mixin
+  npm install loopback-ds-timestamp-mixin --save
 ```
+
+UPSERT ISSUES
+=============
+
+With version 2.33.2 of this module the [upsert validation was turned off](https://github.com/clarkbw/loopback-ds-timestamp-mixin/blob/master/es6/time-stamp.js#L16).  This may create issues for your project if upsert validation is required.  If you need upsert validation, you can turn off the requirement for the `updatedAt` and `createdAt` fields which will allow upsert validation to continue.
 
 MIXINSOURCES
 =============
