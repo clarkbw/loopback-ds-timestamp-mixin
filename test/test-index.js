@@ -11,7 +11,7 @@ var dataSource = app.createDataSource({
 });
 
 // import our TimeStamp mixin
-require('../')(app);
+require('../').default(app);
 
 test('loopback datasource timestamps', function(tap) {
   'use strict';
