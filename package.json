@@ -23,6 +23,15 @@
     "type": "git",
     "url": "https://github.com/clarkbw/loopback-ds-timestamp-mixin.git"
   },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-object-assign",
+      "transform-es2015-modules-commonjs"
+    ]
+  },
   "dependencies": {
     "debug": "2.x"
   },
@@ -31,6 +40,7 @@
   },
   "devDependencies": {
     "babel-core": "latest",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.3.16",
     "babel-plugin-transform-object-assign": "latest",
     "coveralls": "latest",
     "gulp": "latest",

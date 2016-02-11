@@ -1,20 +1,20 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _debug2 = require('./debug');
 
 var _debug3 = _interopRequireDefault(_debug2);
 
-var debug = (0, _debug3['default'])();
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports['default'] = function (Model) {
+var debug = (0, _debug3.default)();
+
+exports.default = function (Model) {
   var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
   debug('TimeStamp mixin for Model %s', Model.modelName);
@@ -47,6 +47,4 @@ exports['default'] = function (Model) {
     next();
   });
 };
-
-module.exports = exports['default'];
 //# sourceMappingURL=time-stamp.js.map
