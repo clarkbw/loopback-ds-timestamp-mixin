@@ -92,7 +92,8 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
       "TimeStamp" : {
         "createdAt" : "createdOn",
         "updatedAt" : "updatedOn",
-        "required" : false
+        "required" : false,
+        "disableAllValidateUpsert" : true
       }
     }
   }
