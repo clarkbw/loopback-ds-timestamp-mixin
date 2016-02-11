@@ -1,10 +1,10 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _debug2 = require('./debug');
 
@@ -16,6 +16,7 @@ var debug = (0, _debug3.default)();
 
 exports.default = function (Model) {
   var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
 
   debug('TimeStamp mixin for Model %s', Model.modelName);
 
