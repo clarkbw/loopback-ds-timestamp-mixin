@@ -25,7 +25,6 @@ test('loopback datasource timestamps', function(tap) {
       Widget.destroyAll(function() {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book) {
           tt.error(err);
-          console.log('BBBOOOKKK', book);
           tt.type(book.createdAt, Date);
           book.name = 'book inf';
           book.save(function(err, b) {
