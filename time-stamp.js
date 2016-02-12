@@ -48,4 +48,6 @@ exports.default = function (Model) {
     next();
   });
 };
+
+module.exports = exports.default;
 //# sourceMappingURL=time-stamp.js.map

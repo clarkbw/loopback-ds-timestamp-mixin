@@ -15,4 +15,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = (0, _util.deprecate)(function (app) {
   app.loopback.modelBuilder.mixins.define('TimeStamp', _timeStamp2.default);
 }, 'DEPRECATED: Use mixinSources, see https://github.com/clarkbw/loopback-ds-timestamp-mixin#mixinsources');
+
+
+module.exports = exports.default;
 //# sourceMappingURL=index.js.map
