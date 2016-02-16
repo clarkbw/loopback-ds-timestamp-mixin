@@ -25,19 +25,22 @@ exports['default'] = function (Model) {
 
   if (options.disableAllValidateUpsert) {
     console.warn('%s.settings.validateUpsert was overriden to false', Model.pluralModelName);
-    Model.settings.validateUpsert = false;  
+    Model.settings.validateUpsert = false;
   } else {
   
-    // Check for PersistedModel static method
-    try {
-        Model.exists({id: null}, function (err, exists) {
-        // Continue normally
+    // Check base model
+    if (Model.settings.base != "PersistedModel") {
+      // Check for PersistedModel static method
+      try {
+        Model.exists({ id: null }, function (err, exists) {
+          // Continue normally
         });
-    }
-    catch(err) {
+      }
+      catch (err) {
         if (Model.settings.validateUpsert && options.required) {
-            console.warn('TimeStamp mixin requires validateUpsert be false in models not based on PersistedModel, override with disableAllValidateUpsert. See @clarkbw/loopback-ds-timestamp-mixin#10');
+          console.warn('TimeStamp mixin requires validateUpsert be false in models not based on PersistedModel, override with disableAllValidateUpsert. See @clarkbw/loopback-ds-timestamp-mixin#10');
         }
+      }
     }
   }
 
@@ -54,14 +57,14 @@ exports['default'] = function (Model) {
       ctx.instance[options.updatedAt] = new Date();
     } else {
       debug('%s.%s before update matching %j', ctx.Model.pluralModelName, options.updatedAt, ctx.where);
-      
+
       if (ctx.currentInstance && ctx.currentInstance[options.createdAt]) {
         debug('currentInstance.%s timestamp reused', options.createdAt);
         ctx.data[options.createdAt] = ctx.currentInstance[options.createdAt];
       } else {
         ctx.data[options.createdAt] = new Date();
       }
-      
+
       ctx.data[options.updatedAt] = new Date();
     }
     next();
