@@ -4,7 +4,17 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -19,7 +29,11 @@ exports['default'] = function (Model) {
 
   debug('TimeStamp mixin for Model %s', Model.modelName);
 
-  options = _extends({ createdAt: 'createdAt', updatedAt: 'updatedAt', required: true, disableAllValidateUpsert: false }, options);
+  options = _extends({ 
+    createdAt: 'createdAt', 
+    updatedAt: 'updatedAt', 
+    required: true, 
+    disableAllValidateUpsert: false }, options);
 
   debug('options', options);
 
@@ -29,7 +43,7 @@ exports['default'] = function (Model) {
   } else {
   
     // Check base model
-    if (Model.settings.base != "PersistedModel") {
+    if (Model.settings.base != 'PersistedModel') {
       // Check for PersistedModel static method
       try {
         Model.exists({ id: null }, function (err, exists) {
@@ -38,7 +52,8 @@ exports['default'] = function (Model) {
       }
       catch (err) {
         if (Model.settings.validateUpsert && options.required) {
-          console.warn('TimeStamp mixin requires validateUpsert be false in models not based on PersistedModel, override with disableAllValidateUpsert. See @clarkbw/loopback-ds-timestamp-mixin#10');
+          console.warn('TimeStamp mixin requires validateUpsert be false in models not based on PersistedModel.' +
+            'Override with disableAllValidateUpsert. See @clarkbw/loopback-ds-timestamp-mixin#10');
         }
       }
     }
