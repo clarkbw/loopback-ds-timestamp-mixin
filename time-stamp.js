@@ -30,10 +30,10 @@ exports.default = function (Model) {
 
   debug('TimeStamp mixin for Model %s', Model.modelName);
 
-  options = _extends({ 
-    createdAt: 'createdAt', 
-    updatedAt: 'updatedAt', 
-    required: true, 
+  options = _extends({
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    required: true,
     disableAllValidateUpsert: false }, options);
 
   debug('options', options);
@@ -42,7 +42,7 @@ exports.default = function (Model) {
     console.warn('%s.settings.validateUpsert was overriden to false', Model.pluralModelName);
     Model.settings.validateUpsert = false;
   } else {
-  
+
     // Check base model
     if (Model.settings.base != 'PersistedModel') {
       // Check for PersistedModel static method
@@ -60,8 +60,12 @@ exports.default = function (Model) {
     }
   }
 
-  Model.defineProperty(options.createdAt, { type: Date, required: options.required, defaultFn: 'now' });
-  Model.defineProperty(options.updatedAt, { type: Date, required: options.required });
+  if (typeof options.createdAt !== 'undefined' && options.createdAt !== null) {
+    Model.defineProperty(options.createdAt, { type: Date, required: options.required, defaultFn: 'now' });
+  }
+  if (typeof options.updatedAt !== 'undefined' && options.updatedAt !== null) {
+    Model.defineProperty(options.updatedAt, { type: Date, required: options.required });
+  }
 
   Model.observe('before save', function (ctx, next) {
     debug('ctx.options', ctx.options);
@@ -70,21 +74,28 @@ exports.default = function (Model) {
     }
     if (ctx.instance) {
       debug('%s.%s before save: %s', ctx.Model.modelName, options.updatedAt, ctx.instance.id);
-      ctx.instance[options.updatedAt] = new Date();
+      if (typeof options.updatedAt !== 'undefined' && options.updatedAt !== null) {
+        ctx.instance[options.updatedAt] = new Date();
+      }
     } else {
       debug('%s.%s before update matching %j', ctx.Model.pluralModelName, options.updatedAt, ctx.where);
 
-      if (ctx.currentInstance && ctx.currentInstance[options.createdAt]) {
-        debug('currentInstance.%s timestamp reused', options.createdAt);
-        ctx.data[options.createdAt] = ctx.currentInstance[options.createdAt];
-      } else {
-        ctx.data[options.createdAt] = new Date();
+      if (typeof options.createdAt !== 'undefined' && options.createdAt !== null) {
+        if (ctx.currentInstance && ctx.currentInstance[options.createdAt]) {
+          debug('currentInstance.%s timestamp reused', options.createdAt);
+          ctx.data[options.createdAt] = ctx.currentInstance[options.createdAt];
+        } else {
+          ctx.data[options.createdAt] = new Date();
+        }
       }
 
-      ctx.data[options.updatedAt] = new Date();
+      if (typeof options.updatedAt !== 'undefined' && options.updatedAt !== null) {
+        ctx.data[options.updatedAt] = new Date();
+      }
     }
     next();
   });
+
 };
 
 module.exports = exports.default;
