@@ -15,7 +15,6 @@ test('loopback datasource timestamps', function(tap) {
       Widget.destroyAll(function() {
         Widget.create({name: 'book 1', type: 'fiction'}, function(err, book) {
           tt.error(err);
-          tt.ok(book.createdAt);
           tt.type(book.createdAt, Date);
           tt.end();
         });
@@ -26,7 +25,7 @@ test('loopback datasource timestamps', function(tap) {
       Widget.destroyAll(function() {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book) {
           tt.error(err);
-          tt.ok(book.createdAt);
+          tt.type(book.createdAt, Date);
           book.name = 'book inf';
           book.save(function(err, b) {
             tt.equal(book.createdAt, b.createdAt);
@@ -40,7 +39,7 @@ test('loopback datasource timestamps', function(tap) {
       Widget.destroyAll(function() {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book) {
           tt.error(err);
-          tt.ok(book.createdAt);
+          tt.type(book.createdAt, Date);
           book.updateAttributes({ name:'book inf' }, function(err, b) {
             tt.error(err);
             tt.equal(book.createdAt, b.createdAt);
@@ -54,7 +53,7 @@ test('loopback datasource timestamps', function(tap) {
       Widget.destroyAll(function() {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book) {
           tt.error(err);
-          tt.ok(book.createdAt);
+          tt.type(book.createdAt, Date);
           Widget.upsert({id: book.id, name:'book inf'}, function(err, b) {
             tt.error(err);
             tt.equal(book.createdAt.getTime(), b.createdAt.getTime());
@@ -69,7 +68,7 @@ test('loopback datasource timestamps', function(tap) {
       Widget.destroyAll(function() {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book) {
           tt.error(err);
-          tt.ok(book.createdAt);
+          tt.type(book.createdAt, Date);
           Widget.updateAll({ type:'fiction' }, { type:'non-fiction' }, function(err) {
             tt.error(err);
             Widget.findById(book.id, function(err, b) {
@@ -92,7 +91,6 @@ test('loopback datasource timestamps', function(tap) {
       Widget.destroyAll(function() {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book) {
           tt.error(err);
-          tt.ok(book.updatedAt);
           tt.type(book.updatedAt, Date);
           tt.end();
         });
@@ -104,14 +102,14 @@ test('loopback datasource timestamps', function(tap) {
       Widget.destroyAll(function() {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book) {
           tt.error(err);
-          tt.ok(book.updatedAt);
+          tt.type(book.createdAt, Date);
           updatedAt = book.updatedAt;
 
           // ensure we give enough time for the updatedAt value to be different
           setTimeout(function pause() {
             book.updateAttributes({ type:'historical-fiction' }, function(err, b) {
               tt.error(err);
-              tt.ok(b.updatedAt);
+              tt.type(b.createdAt, Date);
               tt.ok(b.updatedAt.getTime() > updatedAt.getTime());
               tt.end();
             });
@@ -178,10 +176,7 @@ test('loopback datasource timestamps', function(tap) {
           tt.type(book.createdAt, 'undefined');
           tt.type(book.updatedAt, 'undefined');
 
-          tt.ok(book.createdOn);
           tt.type(book.createdOn, Date);
-
-          tt.ok(book.updatedOn);
           tt.type(book.updatedOn, Date);
 
           tt.end();
@@ -220,14 +215,14 @@ test('loopback datasource timestamps', function(tap) {
         Widget.create({name:'book 1', type:'fiction'}, function(err, book1) {
           tt.error(err);
 
-          tt.ok(book1.updatedAt);
+          tt.type(book1.updatedAt, Date);
 
           var book = {id: book1.id, name:'book 2'};
 
           Widget.updateOrCreate(book, {skipUpdatedAt: true}, function(err, book2) {
             tt.error(err);
 
-            tt.ok(book2.updatedAt);
+            tt.type(book2.updatedAt, Date);
             tt.equal(book1.updatedAt.getTime(), book2.updatedAt.getTime());
             tt.end();
           });

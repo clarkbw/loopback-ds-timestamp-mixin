@@ -32,3 +32,5 @@ export default (Model, options = {}) => {
   });
 
 };
+
+module.exports = exports.default;
