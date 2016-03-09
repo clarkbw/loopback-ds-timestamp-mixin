@@ -42,6 +42,7 @@
     "babel-core": "latest",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.3.16",
     "babel-plugin-transform-object-assign": "latest",
+    "babel-preset-es2015": "latest",
     "coveralls": "latest",
     "gulp": "latest",
     "gulp-babel": "latest",
