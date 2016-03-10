@@ -98,6 +98,54 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
   }
 ```
 
+**NOTE for database MySQL and Postgres options**
+
+When you use database options for MySQL and the like beware that you may have to use the `columnName` value configured for the database instead of the loopback configured name.
+
+In the following example for the `Widget` object your `createdAt` field should equal the `columnName` which would be `created_at`.
+
+```json
+{
+  "name": "Widget",
+  "properties": {
+    "createdAt": {
+      "type": "Date",
+       "required": true,
+       "length": null,
+       "precision": null,
+       "scale": null,
+       "mysql": {
+         "columnName": "created_at",
+         "dataType": "datetime",
+         "dataLength": null,
+         "dataPrecision": null,
+         "dataScale": null,
+         "nullable": "N"
+       }
+  }
+  }
+}
+```
+Thus the configuration looks like this for the above example.
+
+```json
+  {
+    "name": "Widget",
+    "properties": {
+      "name": {
+        "type": "string",
+      }
+    },
+    "mixins": {
+      "TimeStamp" : {
+        "createdAt" : "created_at"
+      }
+    }
+  }
+```
+
+Please see [issue #19](clarkbw/loopback-ds-timestamp-mixin/issues/19) for more information.
+
 OPERATION OPTIONS
 =============
 
