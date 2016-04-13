@@ -1,3 +1,9 @@
 node_modules/
 .nyc_output
 npm-debug.log
+debug.js
+debug.js.map
+index.js
+index.js.map
+time-stamp.js
+time-stamp.js.map
