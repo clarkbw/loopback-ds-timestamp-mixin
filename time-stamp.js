@@ -20,25 +20,33 @@ exports.default = function (Model) {
 
   debug('TimeStamp mixin for Model %s', Model.modelName);
 
-  options = _extends({ createdAt: 'createdAt', updatedAt: 'updatedAt', required: true }, options);
+  options = _extends({
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    required: true,
+    validateUpsert: false // default to turning validation off
+  }, options);
 
   debug('options', options);
 
-  debug('Model.settings.validateUpsert', Model.settings.validateUpsert);
-  if (Model.settings.validateUpsert && options.required) {
-    console.warn('TimeStamp mixin requires validateUpsert be false. See @clarkbw/loopback-ds-timestamp-mixin#10');
+  if (!options.validateUpsert) {
+    Model.settings.validateUpsert = false;
+    console.warn('%s.settings.validateUpsert was overriden to false', Model.pluralModelName);
   }
-  Model.settings.validateUpsert = false;
+
+  if (Model.settings.validateUpsert && options.required) {
+    console.warn('Upserts for %s will fail when validation is turned on' + ' and time stamps are required', Model.pluralModelName);
+  }
 
   Model.defineProperty(options.createdAt, { type: Date, required: options.required, defaultFn: 'now' });
   Model.defineProperty(options.updatedAt, { type: Date, required: options.required });
 
   Model.observe('before save', function (ctx, next) {
-    debug('ctx.options', ctx.options);
     if (ctx.options && ctx.options.skipUpdatedAt) {
       return next();
     }
     if (ctx.instance) {
+      // XXX: the presence of ctx.instance.id possibly means this was an upsert
       debug('%s.%s before save: %s', ctx.Model.modelName, options.updatedAt, ctx.instance.id);
       ctx.instance[options.updatedAt] = new Date();
     } else {

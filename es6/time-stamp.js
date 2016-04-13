@@ -5,15 +5,24 @@ export default (Model, options = {}) => {
 
   debug('TimeStamp mixin for Model %s', Model.modelName);
 
-  options = Object.assign({createdAt: 'createdAt', updatedAt: 'updatedAt', required: true}, options);
+  options = Object.assign({
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    required: true,
+    validateUpsert: false // default to turning validation off
+  }, options);
 
   debug('options', options);
 
-  debug('Model.settings.validateUpsert', Model.settings.validateUpsert);
-  if (Model.settings.validateUpsert && options.required) {
-    console.warn('TimeStamp mixin requires validateUpsert be false. See @clarkbw/loopback-ds-timestamp-mixin#10');
+  if (!options.validateUpsert) {
+    Model.settings.validateUpsert = false;
+    console.warn('%s.settings.validateUpsert was overriden to false', Model.pluralModelName);
   }
-  Model.settings.validateUpsert = false;
+
+  if (Model.settings.validateUpsert && options.required) {
+    console.warn('Upserts for %s will fail when validation is turned on' +
+                 ' and time stamps are required', Model.pluralModelName);
+  }
 
   Model.defineProperty(options.createdAt, {type: Date, required: options.required, defaultFn: 'now'});
   Model.defineProperty(options.updatedAt, {type: Date, required: options.required});

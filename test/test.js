@@ -204,6 +204,29 @@ test('loopback datasource timestamps', function(tap) {
       tt.end();
     });
 
+    t.test('should turn on validation', function(tt) {
+
+      var Book = dataSource.createModel('Book',
+        { name: String, type: String },
+        {
+          validateUpsert: true,  // set this to true for the Model
+          mixins: {  TimeStamp: { validateUpsert: true } }
+        }
+      );
+      Book.destroyAll(function() {
+        Book.create({name:'book 1', type:'fiction'}, function(err, book) {
+          tt.error(err);
+          // this upsert call should fail because we have turned on validation
+          Book.updateOrCreate({id:book.id, type: 'historical-fiction'}, function(err) {
+            tt.equal(err.name, 'ValidationError');
+            tt.equal(err.details.context, 'Book');
+            tt.ok(err.details.codes.createdAt.indexOf('presence') >= 0);
+            tt.end();
+          });
+        });
+      });
+    });
+
     t.end();
 
   });
