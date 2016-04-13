@@ -204,7 +204,7 @@ test('loopback datasource timestamps', function(tap) {
       tt.end();
     });
 
-    t.test('should turn on validation', function(tt) {
+    t.test('should turn on validation and upsert fails', function(tt) {
 
       var Book = dataSource.createModel('Book',
         { name: String, type: String },
