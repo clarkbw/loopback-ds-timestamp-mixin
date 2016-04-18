@@ -1,0 +1,16 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": "airbnb",
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "defaultParams": true,
+    "destructuring": true,
+    "templateStrings": true
+  },
+  "rules": {
+    "no-param-reassign": 1
+  }
+}
