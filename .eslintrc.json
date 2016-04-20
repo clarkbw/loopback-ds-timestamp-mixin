@@ -3,7 +3,7 @@
     "node": true,
     "es6": true
   },
-  "extends": "airbnb",
+  "extends": "airbnb-base",
   "ecmaFeatures": {
     "arrowFunctions": true,
     "defaultParams": true,
