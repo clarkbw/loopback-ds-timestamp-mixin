@@ -8,31 +8,30 @@
 TIMESTAMPS
 =============
 
-This module is designed for the [Strongloop Loopback](https://github.com/strongloop/loopback) framework.  It adds `createdAt` and `updatedAt` attributes to any Model.
+This module is designed for the [Strongloop Loopback](https://github.com/strongloop/loopback) framework.  It automatically adds `createdAt` and `updatedAt` attributes to any Model.
 
 `createdAt` will be set to the current Date the by using the default property of the attribute.
 
 `updatedAt` will be set for every update of an object through bulk `updateAll` or instance `model.save` methods.
 
-This module is implemented with the `before save` [Operation Hook](http://docs.strongloop.com/display/public/LB/Operation+hooks#Operationhooks-beforesave) which is relatively new to the loopback framework so your loopback-datasource-juggler module must greater than version [2.23.0](0002aaedeffadda34ae03752d03d0805ab661665).
+This module is implemented with the `before save` [Operation Hook](http://docs.strongloop.com/display/public/LB/Operation+hooks#Operationhooks-beforesave) which requires the  loopback-datasource-juggler module greater than  [v2.23.0](strongloop/loopback-datasource-juggler@0002aaedeffadda34ae03752d03d0805ab661665).
 
 INSTALL
 =============
 
 ```bash
-  npm install loopback-ds-timestamp-mixin --save
+  npm i loopback-ds-timestamp-mixin --save
 ```
 
 UPSERT ISSUES
 =============
 
-With version 2.33.2 of this module the [upsert validation was turned off](https://github.com/clarkbw/loopback-ds-timestamp-mixin/blob/master/es6/time-stamp.js#L16).  This may create issues for your project if upsert validation is required.  If you need upsert validation, you can turn off the requirement for the `updatedAt` and `createdAt` fields which will allow upsert validation to continue.
+With version 2.33.2 of this module the [upsert validation was turned off](https://github.com/clarkbw/loopback-ds-timestamp-mixin/blob/master/es6/time-stamp.js#L16).  This may create issues for your project if upsert validation is required.  If you require upsert validation, set the `validateUpsert` option to true, however most upserts will fail unless you supply the `createdAt` and `updatedAt` fields or set `required` option to false.
 
-MIXINSOURCES
+SERVER CONFIG
 =============
-With [loopback-boot@v2.8.0](https://github.com/strongloop/loopback-boot/)  [mixinSources](https://github.com/strongloop/loopback-boot/pull/131) have been implemented in a way which allows for loading this mixin without changes to the `server.js` file previously required.
 
-Add the `mixins` property to your `server/model-config.json` like the following:
+Add the `mixins` property to your `server/model-config.json`:
 
 ```json
 {
@@ -52,7 +51,7 @@ Add the `mixins` property to your `server/model-config.json` like the following:
 }
 ```
 
-CONFIG
+MODEL CONFIG
 =============
 
 To use with your Models add the `mixins` attribute to the definition object of your model config.
@@ -71,14 +70,16 @@ To use with your Models add the `mixins` attribute to the definition object of y
   }
 ```
 
-BOOT OPTIONS
+MODEL OPTIONS
 =============
 
 The attribute names `createdAt` and `updatedAt` are configurable.  To use different values for the default attribute names add the following parameters to the mixin options.
 
 You can also configure whether `createdAt` and `updatedAt` are required or not. This can be useful when applying this mixin to existing data where the `required` constraint would fail by default.
 
-In this example we change `createdAt` and `updatedAt` to `createdOn` and `updatedOn`, respectively. We also change the default `required` to `false`.
+By setting the `validateUpsert` option to true you will prevent this mixin from overriding the default Model settings.  With validation turned on most upsert operations will fail with validation errors about missing the required fields like `createdAt` or `updatedAt`.
+
+In this example we change `createdAt` and `updatedAt` to `createdOn` and `updatedOn`, respectively. We also change the default `required` to `false` and set `validateUpsert` to true.
 
 ```json
   {
@@ -92,7 +93,8 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
       "TimeStamp" : {
         "createdAt" : "createdOn",
         "updatedAt" : "updatedOn",
-        "required" : false
+        "required" : false,
+        "validateUpsert": true
       }
     }
   }
@@ -144,7 +146,7 @@ Thus the configuration looks like this for the above example.
   }
 ```
 
-Please see [issue #19](clarkbw/loopback-ds-timestamp-mixin/issues/19) for more information.
+Please see [issue #19](clarkbw/loopback-ds-timestamp-mixin/issues/19) for more information on database options.
 
 OPERATION OPTIONS
 =============
@@ -164,7 +166,7 @@ DEVELOPMENT
 
 This package is written in ES6 JavaScript, check out [@getify/You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS) if you want to learn more about ES6.
 
-Source files are located in the `es6` directory.  Edit the source files to make changes while running `gulp` in the background.  Gulp is using [babel](https://babeljs.io/docs/setup/#gulp) to transform the es6 JavaScript into node compatible JavaScript.
+Source files are located in the [`es6`](https://github.com/clarkbw/loopback-ds-timestamp-mixin/tree/master/es6) directory.  Edit the source files to make changes while running `gulp` in the background.  Gulp is using [babel](https://babeljs.io/docs/setup/#gulp) to transform the es6 JavaScript into node compatible JavaScript.
 
 ```bash
   gulp
@@ -173,7 +175,7 @@ Source files are located in the `es6` directory.  Edit the source files to make 
 TESTING
 =============
 
-This package uses `jscs` and `jshint` as pretests to help maintain style and for error checking.  All test are run against the transformed versions of files, not the es6 versions.
+For error checking and to help maintain style this package uses `eslint` as a pretest.  All test are run against the transformed versions of files, not the es6 versions.
 
 Run the tests in the `test` directory.
 
