@@ -13,7 +13,7 @@ export default (Model, bootOptions = {}) => {
 
   debug('options', options);
 
-  if (!options.validateUpsert) {
+  if (!options.validateUpsert && Model.settings.validateUpsert) {
     Model.settings.validateUpsert = false;
     console.warn('%s.settings.validateUpsert was overriden to false', Model.pluralModelName);
   }
