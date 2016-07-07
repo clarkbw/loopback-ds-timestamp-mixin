@@ -9,7 +9,7 @@ export default (Model, bootOptions = {}) => {
     updatedAt: 'updatedAt',
     required: true,
     validateUpsert: false, // default to turning validation off
-    silenceWarnings: false
+    silenceWarnings: false,
   }, bootOptions);
 
   debug('options', options);
