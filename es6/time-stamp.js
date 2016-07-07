@@ -9,16 +9,17 @@ export default (Model, bootOptions = {}) => {
     updatedAt: 'updatedAt',
     required: true,
     validateUpsert: false, // default to turning validation off
+    silenceWarnings: false
   }, bootOptions);
 
   debug('options', options);
 
-  if (!options.validateUpsert && Model.settings.validateUpsert) {
+  if (!options.silenceWarnings && !options.validateUpsert && Model.settings.validateUpsert) {
     Model.settings.validateUpsert = false;
     console.warn('%s.settings.validateUpsert was overriden to false', Model.pluralModelName);
   }
 
-  if (Model.settings.validateUpsert && options.required) {
+  if (!options.silenceWarnings && Model.settings.validateUpsert && options.required) {
     console.warn('Upserts for %s will fail when validation is turned on' +
                  ' and time stamps are required', Model.pluralModelName);
   }
