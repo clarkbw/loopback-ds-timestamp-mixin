@@ -79,7 +79,9 @@ You can also configure whether `createdAt` and `updatedAt` are required or not. 
 
 By setting the `validateUpsert` option to true you will prevent this mixin from overriding the default Model settings.  With validation turned on most upsert operations will fail with validation errors about missing the required fields like `createdAt` or `updatedAt`.
 
-In this example we change `createdAt` and `updatedAt` to `createdOn` and `updatedOn`, respectively. We also change the default `required` to `false` and set `validateUpsert` to true.
+This mixin uses console logs to warn you whenever something might need your attention. If you would prefer not to receive these warnings, you can disable them by setting the option `silenceWarnings` to `false` on a per model basis.
+
+In this example we change `createdAt` and `updatedAt` to `createdOn` and `updatedOn`, respectively. We also change the default `required` to `false` and set `validateUpsert` to true. We also disable console warnings with `silenceWarnings`.
 
 ```json
   {
@@ -94,7 +96,8 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
         "createdAt" : "createdOn",
         "updatedAt" : "updatedOn",
         "required" : false,
-        "validateUpsert": true
+        "validateUpsert": true,
+        "silenceWarnings": false
       }
     }
   }
