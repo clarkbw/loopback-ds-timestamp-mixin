@@ -51,7 +51,7 @@
     "gulp-babel": "latest",
     "gulp-sourcemaps": "latest",
     "loopback": "2.x",
-    "loopback-boot": "2.x",
+    "loopback-boot": "2.21.0",
     "nyc": "latest",
     "tap": "latest"
   }
