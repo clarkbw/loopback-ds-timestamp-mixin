@@ -1,4 +1,5 @@
 import _debug from './debug';
+
 const debug = _debug();
 const warn = (options, message) => {
   if (!options.silenceWarnings) {
