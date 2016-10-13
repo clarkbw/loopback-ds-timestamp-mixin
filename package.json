@@ -6,7 +6,7 @@
   "scripts": {
     "preversion": "npm test",
     "pretest": "eslint ./es6/*.js && gulp babel",
-    "postinstall": "npm update && eslint ./es6/*.js && gulp babel",
+    
     "test": "nyc tap ./test/*.js",
     "watch": "gulp",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
