@@ -35,9 +35,6 @@
   "dependencies": {
     "debug": "2.x"
   },
-  "peerDependencies": {
-    "loopback-datasource-juggler": ">=2.48.0"
-  },
   "devDependencies": {
     "babel-core": "latest",
     "babel-plugin-transform-es2015-modules-commonjs": "latest",
@@ -45,13 +42,14 @@
     "babel-preset-es2015": "latest",
     "coveralls": "latest",
     "eslint": "latest",
-    "eslint-config-airbnb-base": "latest",
-    "eslint-plugin-import": "latest",
+    "eslint-config-airbnb-base": "^9.0.0",
+    "eslint-plugin-import": "^2.0.1",
     "gulp": "latest",
     "gulp-babel": "latest",
     "gulp-sourcemaps": "latest",
     "loopback": "2.x",
     "loopback-boot": "2.22.0",
+    "loopback-datasource-juggler": "^2.53.0",
     "nyc": "latest",
     "tap": "latest"
   }
