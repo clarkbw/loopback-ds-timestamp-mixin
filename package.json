@@ -42,7 +42,7 @@
     "babel-preset-es2015": "latest",
     "coveralls": "latest",
     "eslint": "latest",
-    "eslint-config-airbnb-base": "^9.0.0",
+    "eslint-config-airbnb-base": "^10.0.0",
     "eslint-plugin-import": "^2.0.1",
     "gulp": "latest",
     "gulp-babel": "latest",
