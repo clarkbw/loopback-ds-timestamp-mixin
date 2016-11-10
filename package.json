@@ -48,7 +48,7 @@
     "gulp-babel": "latest",
     "gulp-sourcemaps": "latest",
     "loopback": "2.x",
-    "loopback-boot": "2.22.0",
+    "loopback-boot": "2.23.0",
     "loopback-datasource-juggler": "^2.53.0",
     "nyc": "latest",
     "tap": "latest"
