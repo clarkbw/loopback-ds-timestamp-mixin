@@ -33,7 +33,7 @@
     ]
   },
   "dependencies": {
-    "debug": "2.x"
+    "debug": "2.5.0"
   },
   "devDependencies": {
     "babel-core": "latest",
