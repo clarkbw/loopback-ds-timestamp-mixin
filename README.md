@@ -8,6 +8,8 @@
 TIMESTAMPS
 =============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/clarkbw/loopback-ds-timestamp-mixin.svg)](https://greenkeeper.io/)
+
 This module is designed for the [Strongloop Loopback](https://github.com/strongloop/loopback) framework.  It automatically adds `createdAt` and `updatedAt` attributes to any Model.
 
 `createdAt` will be set to the current Date the by using the default property of the attribute.
