@@ -22,7 +22,7 @@ export default (Model, bootOptions = {}) => {
 
   if (!options.validateUpsert && Model.settings.validateUpsert) {
     Model.settings.validateUpsert = false;
-    warn(options, `${Model.pluralModelName} settings.validateUpsert was overriden to false by loopback-ds-timestamp-mixin`);
+    warn(options, `${Model.pluralModelName} settings.validateUpsert was overriden to false`);
   }
 
   if (Model.settings.validateUpsert && options.required) {
