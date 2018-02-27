@@ -1,11 +1,8 @@
 import _debug from './debug';
 
 const debug = _debug();
-const warn = (options, message) => {
-  if (!options.silenceWarnings) {
-    console.warn(message);
-  }
-};
+const warn = _debug(); // create a namespaced warning
+warn.log = console.warn.bind(console); // eslint-disable-line no-console
 
 export default (Model, bootOptions = {}) => {
   debug('TimeStamp mixin for Model %s', Model.modelName);
@@ -20,13 +17,16 @@ export default (Model, bootOptions = {}) => {
 
   debug('options', options);
 
+  // enable our warnings via the options
+  warn.enabled = !options.silenceWarnings;
+
   if (!options.validateUpsert && Model.settings.validateUpsert) {
     Model.settings.validateUpsert = false;
-    warn(options, `${Model.pluralModelName} settings.validateUpsert was overriden to false`);
+    warn(`${Model.pluralModelName} settings.validateUpsert was overriden to false`);
   }
 
   if (Model.settings.validateUpsert && options.required) {
-    warn(options, `Upserts for ${Model.pluralModelName} will fail when
+    warn(`Upserts for ${Model.pluralModelName} will fail when
           validation is turned on and time stamps are required`);
   }
 
