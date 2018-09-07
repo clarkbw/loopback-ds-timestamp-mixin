@@ -81,6 +81,22 @@ test('loopback datasource timestamps', function(tap) {
       });
     });
 
+    t.test('should not change if readOnly is true', function (tt) {
+      Widget.destroyAll(function () {
+        Widget.create({ name: 'book 1', type: 'fiction' }, function (err, book) {
+          tt.error(err);
+          tt.type(book.createdAt, Date);
+          setTimeout(function () {
+            Widget.upsert({ id: book.id, createdAt: new Date() }, function (err, b) {
+              tt.error(err);
+              tt.equal(book.createdAt.getTime(), b.createdAt.getTime());
+              tt.end();
+            });
+          }, 1);
+        });
+      });
+    });
+
     t.end();
 
   });

@@ -13,6 +13,7 @@ export default (Model, bootOptions = {}) => {
     required: true,
     validateUpsert: false, // default to turning validation off
     silenceWarnings: false,
+    readOnly: true,
   }, bootOptions);
 
   debug('options', options);
@@ -43,6 +44,7 @@ export default (Model, bootOptions = {}) => {
 
   Model.observe('before save', (ctx, next) => {
     debug('ctx.options', ctx.options);
+    if (options.readOnly && typeof ctx.data === 'object') delete ctx.data[options.createdAt];
     if (ctx.options && ctx.options.skipUpdatedAt) { return next(); }
     if (ctx.instance) {
       debug('%s.%s before save: %s', ctx.Model.modelName, options.updatedAt, ctx.instance.id);
