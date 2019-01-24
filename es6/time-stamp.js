@@ -13,6 +13,7 @@ export default (Model, bootOptions = {}) => {
     required: true,
     validateUpsert: false, // default to turning validation off
     silenceWarnings: false,
+    index: false,
   }, bootOptions);
 
   debug('options', options);
@@ -34,11 +35,13 @@ export default (Model, bootOptions = {}) => {
     type: Date,
     required: options.required,
     defaultFn: 'now',
+    index: options.index,
   });
 
   Model.defineProperty(options.updatedAt, {
     type: Date,
     required: options.required,
+    index: options.index,
   });
 
   Model.observe('before save', (ctx, next) => {
