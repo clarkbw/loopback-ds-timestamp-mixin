@@ -97,7 +97,8 @@ In this example we change `createdAt` and `updatedAt` to `createdOn` and `update
         "updatedAt" : "updatedOn",
         "required" : false,
         "validateUpsert": true,
-        "silenceWarnings": true
+        "silenceWarnings": true,
+        "index": true
       }
     }
   }
