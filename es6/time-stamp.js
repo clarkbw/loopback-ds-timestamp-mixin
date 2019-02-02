@@ -46,13 +46,15 @@ export default (Model, bootOptions = {}) => {
 
   Model.observe('before save', (ctx, next) => {
     debug('ctx.options', ctx.options);
-    if (ctx.options && ctx.options.skipUpdatedAt) { return next(); }
+    if (ctx.options && ctx.options.skipUpdatedAt) {
+      return next();
+    }
     if (ctx.instance) {
       debug('%s.%s before save: %s', ctx.Model.modelName, options.updatedAt, ctx.instance.id);
       ctx.instance[options.updatedAt] = new Date();
     } else {
       debug('%s.%s before update matching %j',
-            ctx.Model.pluralModelName, options.updatedAt, ctx.where);
+        ctx.Model.pluralModelName, options.updatedAt, ctx.where);
       ctx.data[options.updatedAt] = new Date();
     }
     return next();
