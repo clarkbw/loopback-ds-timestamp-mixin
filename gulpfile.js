@@ -25,4 +25,4 @@ gulp.task('watch', function() {
   gulp.watch(paths.es6, ['babel']);
 });
 
-gulp.task('default', ['watch']);
+// gulp.task('default', ['watch']);
